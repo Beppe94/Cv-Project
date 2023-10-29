@@ -25,8 +25,8 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
+  display: grid;
+  grid-template-columns: repeat(1fr, 1fr);
   min-width: 320px;
   min-height: 100vh;
 }
@@ -53,6 +53,17 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+img {
+  width: 150px;
+  height: auto;
+  border-radius: 10%;
+}
+
+.App {
+  display: flex;
+  justify-content: space-around;
 }
 
 @media (prefers-color-scheme: light) {
