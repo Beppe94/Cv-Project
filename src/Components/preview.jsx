@@ -10,6 +10,7 @@ function PreviewCv({data, PersonEducation, PersonExperience}) {
                 alt={data.fileName} 
                 />
                 <h1>{data.name} {data.surname}</h1>
+                <h2>{data.description}</h2>
             </div>
         </div>
     )

@@ -7,6 +7,7 @@ function App() {
         fileName: '',
         fileSrc: '',
         name: '',
+        description: '',
         surname: '',
         phoneNumber: '',
         email: ''    
@@ -36,6 +37,12 @@ function App() {
         })
     }
 
+    const handleDescription = (e) => {
+        setPersonalInfo({...personalInfo,
+        description: e.target.value
+        })
+    }
+
     return (
         <div className="App">
             <div>
@@ -44,6 +51,7 @@ function App() {
                 handleName={personName}
                 handleSurname={personSurname}
                 uploadImage={uploadImage}
+                handleDescription={handleDescription}
                 />
             </div>
             <div>

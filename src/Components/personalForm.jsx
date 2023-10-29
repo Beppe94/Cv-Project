@@ -1,7 +1,12 @@
-function PersonalDataForm({data,uploadImage,handleName, handleSurname}) {
+function PersonalDataForm({
+    data, 
+    uploadImage,
+    handleName, 
+    handleSurname, 
+    handleDescription}) {
 
     return (
-        <div>
+        <div className="personalInfo">
             <h2>Personal Information</h2>
 
             <div>
@@ -18,15 +23,27 @@ function PersonalDataForm({data,uploadImage,handleName, handleSurname}) {
                 onChange={handleSurname}
                 />
             </div>
-            <label htmlFor="file" id="fileImage">
-                {data.fileName ? data.fileName : "Choose an image"}
-            </label>
-            <input 
-            type="file" 
-            id="file"
-            accept="image/*"
-            onChange={uploadImage}
-            />
+            <div>
+                <label htmlFor="file" id="fileImage">
+                    {data.fileName ? data.fileName : "Choose an image "}
+                </label>
+                <input 
+                type="file" 
+                id="file"
+                accept="image/*"
+                onChange={uploadImage}
+                />
+            </div>
+            <div>
+                <textarea 
+                name="description"
+                cols="40" 
+                rows="10"
+                value={data.description}
+                placeholder="Talk about yourself"
+                onChange={handleDescription}>
+                </textarea>
+            </div>
         </div>
     )
 }
