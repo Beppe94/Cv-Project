@@ -9,7 +9,7 @@ function PersonalDataForm({
         <div className="personalInfo">
             <h2>Personal Information</h2>
 
-            <div>
+            <div className="personName">
                 <input 
                 type="text" 
                 placeholder="First Name"

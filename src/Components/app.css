@@ -14,6 +14,12 @@
   -webkit-text-size-adjust: 100%;
 }
 
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -47,9 +53,11 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
@@ -61,9 +69,27 @@ img {
   border-radius: 10%;
 }
 
+input {
+  width: 100%;
+  height: 40px;
+  padding: 10px;
+  border-radius: 20px;
+}
+
 .App {
   display: flex;
   justify-content: space-around;
+}
+
+.personalInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.personName {
+  display: flex;
+  gap: 10px;
 }
 
 @media (prefers-color-scheme: light) {
@@ -78,3 +104,6 @@ img {
     background-color: #f9f9f9;
   }
 }
+
+/* resume preview*/
+
