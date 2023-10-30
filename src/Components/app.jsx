@@ -7,10 +7,10 @@ function App() {
         fileName: '',
         fileSrc: '',
         name: '',
-        description: '',
         surname: '',
         phoneNumber: '',
-        email: ''    
+        email: '',
+        description: ''
     });
     
     const [education, setEducation] = useState([]);
@@ -37,6 +37,18 @@ function App() {
         })
     }
 
+    const handlePhoneNumber = (e) => {
+        setPersonalInfo({...personalInfo,
+        phoneNumber: e.target.value
+        })
+    }
+    
+    const handleEmail = (e) => {
+        setPersonalInfo({...personalInfo,
+        email: e.target.value
+        })
+    }
+    
     const handleDescription = (e) => {
         setPersonalInfo({...personalInfo,
         description: e.target.value
@@ -51,6 +63,8 @@ function App() {
                 handleName={personName}
                 handleSurname={personSurname}
                 uploadImage={uploadImage}
+                handlePhoneNumber={handlePhoneNumber}
+                handleEmail={handleEmail}
                 handleDescription={handleDescription}
                 />
             </div>

@@ -77,8 +77,9 @@ input {
 }
 
 .App {
+  width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 
 .personalInfo {
@@ -91,6 +92,14 @@ input {
   display: flex;
   gap: 10px;
 }
+
+.personalInfo textarea {
+  padding: 10px;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+
+
 
 @media (prefers-color-scheme: light) {
   :root {
@@ -106,4 +115,33 @@ input {
 }
 
 /* resume preview*/
+
+.resumePreview {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  max-width: 600px;
+}
+
+.person {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  width: 100%;
+  border-bottom: 3px solid black;
+}
+
+.personName {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 10px;
+}
+
+.person img {
+  padding: 10px;
+  max-width: 140px;
+  max-height: 140px;
+}
 
