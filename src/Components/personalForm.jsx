@@ -39,10 +39,11 @@ function PersonalDataForm({
                 />
             </div>
             <div>
-                <input 
+                <input
+                
                 type="number" 
                 placeholder="Phone Number"
-                value={data.phoneNumber}
+                value={data.phoneNumber.slice(0, 14)}
                 onChange={handlePhoneNumber}
                 />
                 <input 

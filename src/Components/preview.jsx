@@ -1,4 +1,4 @@
-function PreviewCv({data, personEducation, PersonExperience}) {
+function PreviewCv({data, userEducation, userExperience}) {
 
     const defaultImg = './src/Assets/default.png'
 
@@ -17,33 +17,45 @@ function PreviewCv({data, personEducation, PersonExperience}) {
                 <div className="perviewPersonalData">
                     <p><b>Phone:</b> {data.phoneNumber}</p>
                     <p><b>Email:</b> {data.email}</p>
-                </div>
-                <div>
-                    <p><b>About Me: </b> {data.description.split('\n').map((line,index) =>
+                    <div>
+                        <p><b>About Me: </b> {data.description.split('\n').map((line,index) =>
                     
-                    <span key={index}>
-                        {line}
-                        <br />  
-                    </span>
-                    )}
-                    </p>
+                        <span key={index}>
+                            {line}
+                            <br />  
+                        </span>
+                        )}
+                        </p>
+                    </div>
                 </div>
             </div>
             <div>
                 <h2>Education</h2>
-                <ul>
-                    {personEducation.filter(education => education !== '').map(
+                <div>
+                    <ul>
+                    {userEducation.filter(
+                        education => education !== '').map(
                         (element, index) => (
                             <li key={index}>
                                 {element.charAt(0).toUpperCase() + element.slice(1)}
                             </li>
                     ))}
-                    
-                    
-                </ul>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <h2>Work Experience</h2>
+                <div>
+                    <h3><b>Company Name: </b>{userExperience.companyName}</h3>
+                    <h4><b>Role: </b>{userExperience.position}</h4>
+                    <div>
+                        <h4><b>Starting Date: </b>{userExperience.startingDate}</h4>
+                        <h4><b>Ending Date: </b>{userExperience.endingDate}</h4>
+                    </div>
+                </div>
             </div>
         </div>
     )
 }
 
-export default PreviewCv
+export default PreviewCv;

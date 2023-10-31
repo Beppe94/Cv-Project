@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 function EducationForm({data, handleEducation}) {
-    const [newEducation, setNewEducation] = useState('')
+    const [newEducation, setNewEducation] = useState([])
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -24,14 +24,14 @@ function EducationForm({data, handleEducation}) {
                 <input type="text" 
                 value={newEducation}
                 onChange={(e) => setNewEducation(e.target.value)}
-                placeholder="Add Education"
+                placeholder="Add Degree / Education"
                 />
                 <button type="submit">
-                    Submit</button>
+                    Add Education</button>
             </form>
                 <button onClick={removeEducation}>Remove Education</button>
         </div>
     )
 }
 
-export default EducationForm
+export default EducationForm;

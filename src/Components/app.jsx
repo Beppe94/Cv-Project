@@ -2,6 +2,7 @@ import { useState } from "react";
 import PreviewCv from "./preview";
 import PersonalDataForm from "./personalForm";
 import EducationForm from "./educationComp";
+import ExperienceForm from "./experienceComp";
 
 function App() {
     const [personalInfo, setPersonalInfo] = useState({
@@ -16,7 +17,13 @@ function App() {
     
     const [education, setEducation] = useState([]);
                                                     
-    const [experience, setExperience] = useState([]);
+    const [workExperience, setWorkExperience] = useState({
+        companyName: '',
+        position: '',
+        startingDate: '',
+        endingDate: '',
+        roleDescription: ''
+    });
 
     const uploadImage = (e) => {
         setPersonalInfo({...personalInfo,
@@ -75,11 +82,20 @@ function App() {
                     handleEducation={setEducation}
                     />
                 </div>
+                <div>
+                    <h2>Work Experience</h2>
+                    <ExperienceForm
+                    data={workExperience}
+                    handleExperience={setWorkExperience}
+                    />
+                </div>
             </div>
             <div>
                 <PreviewCv 
                 data={personalInfo}
-                personEducation={education}/>
+                userEducation={education}
+                userExperience={workExperience}
+                />
             </div>
         </div>
     )
