@@ -99,8 +99,6 @@ input {
   border-radius: 10px;
 }
 
-
-
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
@@ -117,6 +115,8 @@ input {
 /* resume preview*/
 
 .resumePreview {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   padding: 10px;
   display: flex;
@@ -132,7 +132,7 @@ input {
   border-bottom: 3px solid black;
 }
 
-.personName {
+.previewPersonName {
   display: flex;
   flex-wrap: wrap;
   align-items: center;

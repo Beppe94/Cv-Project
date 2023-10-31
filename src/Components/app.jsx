@@ -1,6 +1,7 @@
 import { useState } from "react";
 import PreviewCv from "./preview";
 import PersonalDataForm from "./personalForm";
+import EducationForm from "./educationComp";
 
 function App() {
     const [personalInfo, setPersonalInfo] = useState({
@@ -67,9 +68,18 @@ function App() {
                 handleEmail={handleEmail}
                 handleDescription={handleDescription}
                 />
+                <div>
+                    <h2>Education</h2>
+                    <EducationForm
+                    data={education}
+                    handleEducation={setEducation}
+                    />
+                </div>
             </div>
             <div>
-                <PreviewCv data={personalInfo}/>
+                <PreviewCv 
+                data={personalInfo}
+                personEducation={education}/>
             </div>
         </div>
     )

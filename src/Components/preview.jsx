@@ -1,4 +1,4 @@
-function PreviewCv({data, PersonEducation, PersonExperience}) {
+function PreviewCv({data, personEducation, PersonExperience}) {
 
     const defaultImg = './src/Assets/default.png'
 
@@ -10,11 +10,11 @@ function PreviewCv({data, PersonEducation, PersonExperience}) {
                     src={data.fileSrc || defaultImg} 
                     alt={data.fileName} 
                     />
-                    <div className="personName">
+                    <div className="previewPersonName">
                         <h1>{data.name} {data.surname}</h1>
                     </div>
                 </div>
-                <div className="personalData">
+                <div className="perviewPersonalData">
                     <p><b>Phone:</b> {data.phoneNumber}</p>
                     <p><b>Email:</b> {data.email}</p>
                 </div>
@@ -28,6 +28,19 @@ function PreviewCv({data, PersonEducation, PersonExperience}) {
                     )}
                     </p>
                 </div>
+            </div>
+            <div>
+                <h2>Education</h2>
+                <ul>
+                    {personEducation.filter(education => education !== '').map(
+                        (element, index) => (
+                            <li key={index}>
+                                {element.charAt(0).toUpperCase() + element.slice(1)}
+                            </li>
+                    ))}
+                    
+                    
+                </ul>
             </div>
         </div>
     )

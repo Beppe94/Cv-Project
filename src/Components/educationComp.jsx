@@ -1,0 +1,37 @@
+import { useState } from "react";
+
+function EducationForm({data, handleEducation}) {
+    const [newEducation, setNewEducation] = useState('')
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+
+        if(newEducation.trim() !== '') {
+            handleEducation([...data, newEducation]);            
+            setNewEducation('');
+        }
+    }
+
+    function removeEducation() {
+        const updatedData = [...data.slice(0, data.length -1)];
+
+        handleEducation(updatedData)
+    }
+
+    return (
+        <div>
+            <form onSubmit={handleSubmit}>
+                <input type="text" 
+                value={newEducation}
+                onChange={(e) => setNewEducation(e.target.value)}
+                placeholder="Add Education"
+                />
+                <button type="submit">
+                    Submit</button>
+            </form>
+                <button onClick={removeEducation}>Remove Education</button>
+        </div>
+    )
+}
+
+export default EducationForm
