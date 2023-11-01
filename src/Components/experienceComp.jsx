@@ -1,46 +1,84 @@
+import { useState } from "react";
+
 function ExperienceForm({data, handleExperience}) {
 
-    const handleName = (e) => {
-        if(e.target.placeholder === 'Company Name') {
-            handleExperience({...data, companyName: e.target.value})
-        } else if(e.target.placeholder === 'Position') {
-            handleExperience({...data, position: e.target.value})
-        } else if(e.target.placeholder === 'Starting Date') {
-            handleExperience({...data, startingDate: e.target.value})
-        }
-    }
+    const [newExperience, setNewExperience] = useState({
+        companyName: '',
+        position: '',
+        startingDate: '',
+        endingDate: '',
+        roleDescription: ''
+    })
 
-    
+    const handleWorkSubmit = (e) => {
+        e.preventDefault();
+
+        if(e.target.placeholder === 'Company Name') {
+            handleExperience({...data, 
+                newExperience: {...data.newExperience,
+                    companyName: newExperience.companyName}});
+        } else if(e.target.placeholder === 'Position') {
+            handleExperience({...data, 
+                newExperience: {...data.newExperience, 
+                    position: newExperience.position}});
+        } else if(e.target.placeholder === 'Starting Date') {
+            handleExperience({...data, 
+                newExperience: {...data.newExperience, 
+                    startingDate: newExperience.startingDate}});
+        } else if(e.target.placeholder === 'Ending Date') {
+            handleExperience({...data, 
+                newExperience: {...data.newExperience, 
+                    endingDate: newExperience.endingDate}});
+        } else if(e.target.placeholder === 'Role Description') {
+            handleExperience({...data, 
+                newExperience: {...data.newExperience, 
+                    roleDescription: newExperience.roleDescription}});
+        }
+
+        handleExperience([...data, newExperience])
+
+        setNewExperience({
+            companyName: '',
+            position: '',
+            startingDate: '',
+            endingDate: '',
+            roleDescription: ''
+        });
+    }
 
     return (
         <div>
-            <form>
-                <input 
-                type="text" 
+            <form onSubmit={handleWorkSubmit}>
+                <input
                 placeholder="Company Name"
-                value={data.companyName}
-                onChange={handleName}
+                value={newExperience.companyName}
+                onChange={(e) => setNewExperience({...newExperience, companyName: e.target.value})}
                 />
-                <input 
-                type="text" 
+                <input
                 placeholder="Position"
-                onChange={handleName}
+                value={newExperience.position}
+                onChange={(e) => setNewExperience({...newExperience, position: e.target.value})}
                 />
-                <input 
-                type="date"
+                <input
                 placeholder="Starting Date"
-                onChange={handleName}
+                value={newExperience.startingDate}
+                onChange={(e) => setNewExperience({...newExperience, startingDate: e.target.value})}
                 />
                 <input 
-                type="date" 
                 placeholder="Ending Date"
-                onChange={handleName}
+                value={newExperience.endingDate}
+                onChange={(e) => setNewExperience({...newExperience, endingDate: e.target.value})}
                 />
-                <textarea 
-                type="text" 
+                <textarea
+                cols={40}
+                rows={10}
+                value={newExperience.roleDescription}
                 placeholder="Role Description"
-                onChange={handleName}
+                onChange={(e) => setNewExperience({...newExperience, roleDescription: e.target.value})}
                 />
+                <button type="submit">
+                    Add Experience
+                </button>
             </form>
         </div>
     )

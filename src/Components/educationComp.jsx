@@ -6,9 +6,13 @@ function EducationForm({data, handleEducation}) {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        if(newEducation.trim() !== '') {
-            handleEducation([...data, newEducation]);            
-            setNewEducation('');
+        try {
+            if(newEducation.trim() !== '') {
+                handleEducation([...data, newEducation]);            
+                setNewEducation('');
+            }
+        } catch (typeError) {
+            alert('Insert Valid Education Input');
         }
     }
 
@@ -27,7 +31,8 @@ function EducationForm({data, handleEducation}) {
                 placeholder="Add Degree / Education"
                 />
                 <button type="submit">
-                    Add Education</button>
+                    Add Education
+                </button>
             </form>
                 <button onClick={removeEducation}>Remove Education</button>
         </div>

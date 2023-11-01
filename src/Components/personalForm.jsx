@@ -13,6 +13,7 @@ function PersonalDataForm({
 
             <div className="personName">
                 <input
+                required
                 maxLength={15}
                 type="text" 
                 placeholder="First Name"
@@ -20,6 +21,7 @@ function PersonalDataForm({
                 onChange={handleName}
                 />
                 <input
+                required
                 maxLength={15}
                 type="text"
                 placeholder="Surname"
@@ -40,13 +42,14 @@ function PersonalDataForm({
             </div>
             <div>
                 <input
-                
+                required
                 type="number" 
                 placeholder="Phone Number"
                 value={data.phoneNumber.slice(0, 14)}
                 onChange={handlePhoneNumber}
                 />
-                <input 
+                <input
+                required
                 type="email" 
                 placeholder="Email"
                 value={data.email}
@@ -56,8 +59,8 @@ function PersonalDataForm({
             <div>
                 <textarea 
                 name="description"
-                cols="40" 
-                rows="10"
+                cols={40}
+                rows={10}
                 value={data.description}
                 placeholder="Talk about yourself"
                 onChange={handleDescription}>

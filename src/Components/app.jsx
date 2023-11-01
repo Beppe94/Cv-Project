@@ -17,20 +17,13 @@ function App() {
     
     const [education, setEducation] = useState([]);
                                                     
-    const [workExperience, setWorkExperience] = useState({
-        companyName: '',
-        position: '',
-        startingDate: '',
-        endingDate: '',
-        roleDescription: ''
-    });
+    const [workExperience, setWorkExperience] = useState([]);
 
     const uploadImage = (e) => {
         setPersonalInfo({...personalInfo,
             fileName: e.target.files[0].name,
             fileSrc: URL.createObjectURL(e.target.files[0])
         })
-        
     }
 
     const personName = (e) => {
@@ -65,7 +58,7 @@ function App() {
 
     return (
         <div className="App">
-            <div>
+            <div className="userInputData">
                 <PersonalDataForm 
                 data={personalInfo}
                 handleName={personName}

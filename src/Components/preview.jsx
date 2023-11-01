@@ -39,19 +39,22 @@ function PreviewCv({data, userEducation, userExperience}) {
                             <li key={index}>
                                 {element.charAt(0).toUpperCase() + element.slice(1)}
                             </li>
-                    ))}
+                        ))}
                     </ul>
                 </div>
             </div>
             <div>
                 <h2>Work Experience</h2>
                 <div>
-                    <h3><b>Company Name: </b>{userExperience.companyName}</h3>
-                    <h4><b>Role: </b>{userExperience.position}</h4>
-                    <div>
-                        <h4><b>Starting Date: </b>{userExperience.startingDate}</h4>
-                        <h4><b>Ending Date: </b>{userExperience.endingDate}</h4>
-                    </div>
+                    {userExperience.map((exp, index) => (
+                        <div>
+                        <h3> <b>Company Name: </b> {exp.companyName}</h3>
+                        <h3> <b>Position: </b> {exp.position}</h3>
+                        <h3> <b>Starting Date: </b> {exp.startingDate}</h3>
+                        <h3> <b>Ending Date: </b> {exp.EndingDate}</h3>
+                        <h3> <b>Description: </b> {exp.roleDescription}</h3>
+                        </div>
+                    ))}
                 </div>
             </div>
         </div>
