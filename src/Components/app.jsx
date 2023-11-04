@@ -56,6 +56,14 @@ function App() {
         })
     }
 
+    function handleDelete(index) {
+        
+        const updateExperience = workExperience.slice();
+        updateExperience.splice(index, 1);
+
+        setWorkExperience(updateExperience);
+    }
+
     return (
         <div className="App">
             <div className="userInputData">
@@ -88,6 +96,7 @@ function App() {
                 data={personalInfo}
                 userEducation={education}
                 userExperience={workExperience}
+                handleDelete={handleDelete}
                 />
             </div>
         </div>

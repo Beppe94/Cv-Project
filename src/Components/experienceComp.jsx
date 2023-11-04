@@ -50,26 +50,31 @@ function ExperienceForm({data, handleExperience}) {
         <div>
             <form onSubmit={handleWorkSubmit}>
                 <input
+                required
                 placeholder="Company Name"
                 value={newExperience.companyName}
                 onChange={(e) => setNewExperience({...newExperience, companyName: e.target.value})}
                 />
                 <input
+                required
                 placeholder="Position"
                 value={newExperience.position}
                 onChange={(e) => setNewExperience({...newExperience, position: e.target.value})}
                 />
                 <input
+                required
                 placeholder="Starting Date"
                 value={newExperience.startingDate}
                 onChange={(e) => setNewExperience({...newExperience, startingDate: e.target.value})}
                 />
-                <input 
+                <input
+                required
                 placeholder="Ending Date"
                 value={newExperience.endingDate}
                 onChange={(e) => setNewExperience({...newExperience, endingDate: e.target.value})}
                 />
                 <textarea
+                required
                 cols={40}
                 rows={10}
                 value={newExperience.roleDescription}
@@ -83,5 +88,6 @@ function ExperienceForm({data, handleExperience}) {
         </div>
     )
 }
+
 
 export default ExperienceForm;

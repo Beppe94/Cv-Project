@@ -1,4 +1,4 @@
-function PreviewCv({data, userEducation, userExperience}) {
+function PreviewCv({data, userEducation, userExperience, handleDelete}) {
 
     const defaultImg = './src/Assets/default.png'
 
@@ -44,15 +44,23 @@ function PreviewCv({data, userEducation, userExperience}) {
                 </div>
             </div>
             <div>
-                <h2>Work Experience</h2>
+                <h2>Experience</h2>
                 <div>
                     {userExperience.map((exp, index) => (
                         <div>
-                        <h3> <b>Company Name: </b> {exp.companyName}</h3>
-                        <h3> <b>Position: </b> {exp.position}</h3>
-                        <h3> <b>Starting Date: </b> {exp.startingDate}</h3>
-                        <h3> <b>Ending Date: </b> {exp.EndingDate}</h3>
-                        <h3> <b>Description: </b> {exp.roleDescription}</h3>
+                            <div key={index}>
+                            <p> <b>Company Name: </b> {exp.companyName}</p>
+                            <p> <b>Position: </b> {exp.position}</p>
+                            <div>
+                                <p> <b>Starting Date: </b> {exp.startingDate}</p>
+                                <p> <b>Ending Date: </b> {exp.endingDate}</p>
+                            </div>
+                            <p> <b>Description: </b> {exp.roleDescription}</p>
+                            <button>Edit</button>
+                            <button 
+                            onClick={() => handleDelete(index)}
+                            >Remove</button>
+                            </div>
                         </div>
                     ))}
                 </div>
