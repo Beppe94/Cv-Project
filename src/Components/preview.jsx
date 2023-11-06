@@ -1,4 +1,4 @@
-function PreviewCv({data, userEducation, userExperience, handleDelete}) {
+function PreviewCv({data, userEducation, userExperience, handleDelete, handleEdit}) {
 
     const defaultImg = './src/Assets/default.png'
 
@@ -31,7 +31,8 @@ function PreviewCv({data, userEducation, userExperience, handleDelete}) {
             </div>
             <div>
                 <h2>Education</h2>
-                <div>
+                {/*
+                <div> 
                     <ul>
                     {userEducation.filter(
                         education => education !== '').map(
@@ -39,6 +40,18 @@ function PreviewCv({data, userEducation, userExperience, handleDelete}) {
                             <li key={index}>
                                 {element.charAt(0).toUpperCase() + element.slice(1)}
                             </li>
+                        ))}
+                    </ul>
+                </div>*/}
+                <div>
+                    <ul>
+                        {Object.keys(userEducation).filter(
+                            key => key !== 'index').map(
+                                (key) => (
+                            <li key={key}>
+                            <b>{key.charAt(0).toUpperCase() +
+                            key.slice(1)}: </b> {userEducation[key]} <br />       
+                            </li>                    
                         ))}
                     </ul>
                 </div>
@@ -56,7 +69,7 @@ function PreviewCv({data, userEducation, userExperience, handleDelete}) {
                                 <p> <b>Ending Date: </b> {exp.endingDate}</p>
                             </div>
                             <p> <b>Description: </b> {exp.roleDescription}</p>
-                            <button>Edit</button>
+                            
                             <button 
                             onClick={() => handleDelete(index)}
                             >Remove</button>

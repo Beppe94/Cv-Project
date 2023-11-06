@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {useState} from "react";
 import PreviewCv from "./preview";
 import PersonalDataForm from "./personalForm";
 import EducationForm from "./educationComp";
@@ -15,8 +15,18 @@ function App() {
         description: ''
     });
     
-    const [education, setEducation] = useState([]);
-                                                    
+    const [inputCount, setInputCount] = useState(1)
+
+    const [educationArray, setEducationArray] = useState([])
+
+    const [education, setEducation] = useState({
+        index: 0,
+        school: '',
+        degree: '',
+        year: ''
+    });
+    
+    
     const [workExperience, setWorkExperience] = useState([]);
 
     const uploadImage = (e) => {
@@ -56,6 +66,37 @@ function App() {
         })
     }
 
+    const handleSchoolName = (e) => {
+        setEducation({...education,
+        index: +1,
+        school: e.target.value
+        })
+    }
+
+    const handleSchoolDegree = (e) => {
+        setEducation({...education,
+        degree: e.target.value
+        })
+    }
+
+    const handleSchoolYear = (e) => {
+        setEducation({...education,
+        year: e.target.value
+        })
+    }
+
+    function handleEditEducation(index) {
+        const updateEducation = education.slice()
+
+        setEducationArray([{...education, educationArray}])
+    }
+
+    const handleAddEducation = () => {
+        
+        setEducationArray([{...education, educationArray}])
+        setInputCount(inputCount +1)
+    }
+
     function handleDelete(index) {
         
         const updateExperience = workExperience.slice();
@@ -63,6 +104,7 @@ function App() {
 
         setWorkExperience(updateExperience);
     }
+
 
     return (
         <div className="App">
@@ -79,8 +121,13 @@ function App() {
                 <div>
                     <h2>Education</h2>
                     <EducationForm
-                    data={education}
-                    handleEducation={setEducation}
+                    count={inputCount}
+                    data={educationArray}
+                    handleSchool={handleSchoolName}
+                    handleDegree={handleSchoolDegree}
+                    handleYear={handleSchoolYear}
+                    addEducation={handleAddEducation}
+                    edit={handleEditEducation}
                     />
                 </div>
                 <div>

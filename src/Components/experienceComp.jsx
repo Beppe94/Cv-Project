@@ -53,25 +53,29 @@ function ExperienceForm({data, handleExperience}) {
                 required
                 placeholder="Company Name"
                 value={newExperience.companyName}
-                onChange={(e) => setNewExperience({...newExperience, companyName: e.target.value})}
+                onChange={(e) => setNewExperience({
+                    ...newExperience, companyName: e.target.value})}
                 />
                 <input
                 required
                 placeholder="Position"
                 value={newExperience.position}
-                onChange={(e) => setNewExperience({...newExperience, position: e.target.value})}
+                onChange={(e) => setNewExperience({
+                    ...newExperience, position: e.target.value})}
                 />
                 <input
                 required
                 placeholder="Starting Date"
                 value={newExperience.startingDate}
-                onChange={(e) => setNewExperience({...newExperience, startingDate: e.target.value})}
+                onChange={(e) => setNewExperience({
+                    ...newExperience, startingDate: e.target.value})}
                 />
                 <input
                 required
                 placeholder="Ending Date"
                 value={newExperience.endingDate}
-                onChange={(e) => setNewExperience({...newExperience, endingDate: e.target.value})}
+                onChange={(e) => setNewExperience({
+                    ...newExperience, endingDate: e.target.value})}
                 />
                 <textarea
                 required
@@ -79,7 +83,8 @@ function ExperienceForm({data, handleExperience}) {
                 rows={10}
                 value={newExperience.roleDescription}
                 placeholder="Role Description"
-                onChange={(e) => setNewExperience({...newExperience, roleDescription: e.target.value})}
+                onChange={(e) => setNewExperience({
+                    ...newExperience, roleDescription: e.target.value})}
                 />
                 <button type="submit">
                     Add Experience

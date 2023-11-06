@@ -1,6 +1,7 @@
 import { useState } from "react";
 
-function EducationForm({data, handleEducation}) {
+function EducationForm({edit, count, data, handleSchool, handleDegree, handleYear, addEducation}) {
+    /*
     const [newEducation, setNewEducation] = useState([])
 
     const handleSubmit = (e) => {
@@ -36,6 +37,40 @@ function EducationForm({data, handleEducation}) {
             </form>
                 <button onClick={removeEducation}>Remove Education</button>
         </div>
+    )
+    */
+    return (
+        <>
+        {Array.from({length: count}).map((_,index) => (
+            <div key={index}> 
+                <form onSubmit={(e) => e.preventDefault()}>
+                    <input 
+                    required
+                    type="text"
+                    placeholder="School Name"
+                    value={data.school}
+                    onChange={handleSchool}
+                    />
+                    <input 
+                    required
+                    type="text" 
+                    placeholder="Degree"
+                    value={data.degree}
+                    onChange={handleDegree}
+                    />
+                    <input 
+                    required
+                    type="text" 
+                    placeholder="Year"
+                    value={data.year}
+                    onChange={handleYear}
+                    />
+                    <button onClick={edit}>Edit</button>
+                    <button onClick={addEducation}>Add</button>
+                </form>
+            </div>
+        ))}
+        </>
     )
 }
 
