@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function EducationForm({edit, count, data, handleSchool, handleDegree, handleYear, addEducation}) {
+function EducationForm({count, data, handleSchool, handleDegree, handleYear, addEducation, isTrue}) {
     /*
     const [newEducation, setNewEducation] = useState([])
 
@@ -65,8 +65,7 @@ function EducationForm({edit, count, data, handleSchool, handleDegree, handleYea
                     value={data.year}
                     onChange={handleYear}
                     />
-                    <button onClick={edit}>Edit</button>
-                    <button onClick={addEducation}>Add</button>
+                    <button onClick={(e) => {addEducation(e,index)}}>Add</button>
                 </form>
             </div>
         ))}

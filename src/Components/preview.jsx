@@ -45,13 +45,13 @@ function PreviewCv({data, userEducation, userExperience, handleDelete, handleEdi
                 </div>*/}
                 <div>
                     <ul>
-                        {Object.keys(userEducation).filter(
-                            key => key !== 'index').map(
-                                (key) => (
-                            <li key={key}>
-                            <b>{key.charAt(0).toUpperCase() +
-                            key.slice(1)}: </b> {userEducation[key]} <br />       
-                            </li>                    
+                        {userEducation.map((education, index) =>(
+                            <li key={index}>
+                                <b>School Name: </b>{education.school} <br />
+                                <b>Degree: </b> {education.degree} <br />
+                                <b>Year: </b> {education.year} <br />
+                                {education.index}
+                            </li>
                         ))}
                     </ul>
                 </div>
