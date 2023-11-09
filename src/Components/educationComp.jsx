@@ -1,6 +1,10 @@
 import { useState } from "react";
 
-function EducationForm({count, data, handleSchool, handleDegree, handleYear, addEducation, isTrue}) {
+function EducationForm({
+    count, data, 
+    handleEdit, handleSchool, 
+    handleDegree, handleYear, 
+    addEducation}) {
     /*
     const [newEducation, setNewEducation] = useState([])
 
@@ -39,11 +43,22 @@ function EducationForm({count, data, handleSchool, handleDegree, handleYear, add
         </div>
     )
     */
+    
+    const [changeButton, setChandeButton] = useState(Array(count).fill(false));
+
+    const handleSubmit = (e, index) => {
+        e.preventDefault();
+
+        const updatedChandeButton = [...changeButton]
+        updatedChandeButton[index] = true
+        setChandeButton(updatedChandeButton)
+    }
+
     return (
         <>
         {Array.from({length: count}).map((_,index) => (
             <div key={index}> 
-                <form onSubmit={(e) => e.preventDefault()}>
+                <form onSubmit={(e) => handleSubmit(e, index)}>
                     <input 
                     required
                     type="text"
@@ -54,7 +69,7 @@ function EducationForm({count, data, handleSchool, handleDegree, handleYear, add
                     <input 
                     required
                     type="text" 
-                    placeholder="Degree"
+                    placeholder="Degree Title"
                     value={data.degree}
                     onChange={handleDegree}
                     />
@@ -65,7 +80,11 @@ function EducationForm({count, data, handleSchool, handleDegree, handleYear, add
                     value={data.year}
                     onChange={handleYear}
                     />
-                    <button onClick={(e) => {addEducation(e,index)}}>Add</button>
+                    {changeButton[index] ? (
+                        <button onClick={(e) => {handleEdit(e,index)}}>Edit</button>
+                        ) : (
+                        <button onClick={(e) => {addEducation(e,index)}}>Add</button>
+                    )}
                 </form>
             </div>
         ))}

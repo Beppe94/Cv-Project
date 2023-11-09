@@ -23,9 +23,9 @@ function App() {
         index: 0,
         school: '',
         degree: '',
-        year: ''
+        year: '',
+        isEditing: false
     });
-    
     
     const [workExperience, setWorkExperience] = useState([]);
 
@@ -84,7 +84,7 @@ function App() {
         })
     }
 
-    const handleAddEducation = (e, index) => {
+    const handleAddEducation = (e) => {
         
         const form = e.target.closest('form')
         const name = form.childNodes[0].value
@@ -95,15 +95,36 @@ function App() {
             return
         }
         
-        setEducation({...education, index: education.index + 1})
-
+        if(educationArray.some(edu =>
+            edu.school === name && 
+            edu.degree === degree && 
+            edu.year === year)) {
+            return
+        }else {
+            const newEducation = education
+            newEducation.index = education.index +1
+            setEducationArray([...educationArray, newEducation])
+            setInputCount(inputCount +1)
+        }
+    }
+    
+    const handleEdit = (e,index) => {
+        const form = e.target.closest('form')
+        const name = form.childNodes[0].value
+        const degree = form.childNodes[1].value
+        const year = form.childNodes[2].value
         
-        setEducationArray([...educationArray, education])
-        setInputCount(inputCount +1)
-        console.log(index)
-        
+        setEducationArray((prevEducationArray) => {
+            return prevEducationArray.map((edu, idx) => {
+                if(index === idx) {
+                    return edu = {index: prevEducationArray[index].index,
+                    school: name, degree: degree, year: year}
+                }
+                return edu
+            })
+        })
 
-        console.log(`count: ${inputCount},index:  ${index}, educ : ${education.index}`);
+        console.log(`count: ${inputCount},index:  ${index}, eduIdx : ${educationArray[index].index}`);
     }
 
     function handleDelete(index) {
@@ -132,6 +153,7 @@ function App() {
                     <EducationForm
                     count={inputCount}
                     data={educationArray}
+                    handleEdit={handleEdit}
                     handleSchool={handleSchoolName}
                     handleDegree={handleSchoolDegree}
                     handleYear={handleSchoolYear}
