@@ -3,8 +3,8 @@ import { useState } from "react";
 function EducationForm({
     count, data, 
     handleEdit, handleSchool, 
-    handleDegree, handleYear, 
-    addEducation}) {
+    handleDegree, handleYear,
+    handleDelete, addEducation}) {
     /*
     const [newEducation, setNewEducation] = useState([])
 
@@ -85,6 +85,8 @@ function EducationForm({
                         ) : (
                         <button onClick={(e) => {addEducation(e,index)}}>Add</button>
                     )}
+                    <button
+                    onClick={() => handleDelete(index)}>Delete</button>
                 </form>
             </div>
         ))}

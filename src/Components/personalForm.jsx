@@ -16,7 +16,7 @@ function PersonalDataForm({
                 required
                 maxLength={15}
                 type="text" 
-                placeholder="First Name"
+                placeholder="Name"
                 value={data.name}
                 onChange={handleName}
                 />
@@ -51,7 +51,7 @@ function PersonalDataForm({
                 <input
                 required
                 type="email" 
-                placeholder="Email"
+                placeholder="Example@gmail.com"
                 value={data.email}
                 onChange={handleEmail}
                 />

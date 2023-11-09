@@ -1,4 +1,4 @@
-function PreviewCv({data, userEducation, userExperience, handleDelete, handleEdit}) {
+function PreviewCv({data, userEducation, userExperience, handleDelete}) {
 
     const defaultImg = './src/Assets/default.png'
 

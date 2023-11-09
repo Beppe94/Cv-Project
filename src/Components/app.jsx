@@ -24,7 +24,6 @@ function App() {
         school: '',
         degree: '',
         year: '',
-        isEditing: false
     });
     
     const [workExperience, setWorkExperience] = useState([]);
@@ -101,10 +100,10 @@ function App() {
             edu.year === year)) {
             return
         }else {
-            const newEducation = education
-            newEducation.index = education.index +1
-            setEducationArray([...educationArray, newEducation])
+            setEducation({...education, index: education.index +1})
+            setEducationArray([...educationArray, education])
             setInputCount(inputCount +1)
+            console.log(education);
         }
     }
     
@@ -127,7 +126,14 @@ function App() {
         console.log(`count: ${inputCount},index:  ${index}, eduIdx : ${educationArray[index].index}`);
     }
 
-    function handleDelete(index) {
+    const handleDeleteEducation = (index) => {
+        const newArr = educationArray.slice(index +1)
+        console.log(newArr);
+
+        setEducationArray([educationArray, ...newArr])
+    }
+
+    function handleDeleteWork(index) {
         
         const updateExperience = workExperience.slice();
         updateExperience.splice(index, 1);
@@ -158,6 +164,7 @@ function App() {
                     handleDegree={handleSchoolDegree}
                     handleYear={handleSchoolYear}
                     addEducation={handleAddEducation}
+                    handleDelete={handleDeleteEducation}
                     />
                 </div>
                 <div>
@@ -173,7 +180,7 @@ function App() {
                 data={personalInfo}
                 userEducation={educationArray}
                 userExperience={workExperience}
-                handleDelete={handleDelete}
+                handleDelete={handleDeleteWork}
                 />
             </div>
         </div>
