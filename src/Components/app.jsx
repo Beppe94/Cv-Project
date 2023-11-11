@@ -98,13 +98,13 @@ function App() {
             edu.school === name && 
             edu.degree === degree && 
             edu.year === year)) {
-            return false;
+            return;
         } else {
             setEducation({...education, index: education.index +1})
             setEducationArray([...educationArray, education])
-            setInputCount([...inputCount, inputCount[inputCount]])
-            console.log(inputCount); 
-            return true;
+            setInputCount(prevCount => [
+                ...prevCount, prevCount[prevCount.length -1] +1
+            ])
         }
     }
     
