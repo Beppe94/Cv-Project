@@ -15,7 +15,7 @@ function App() {
         description: ''
     });
 
-    const [inputCount, setInputCount] = useState(1)
+    const [inputCount, setInputCount] = useState([0])
 
     const [educationArray, setEducationArray] = useState([])
 
@@ -98,12 +98,13 @@ function App() {
             edu.school === name && 
             edu.degree === degree && 
             edu.year === year)) {
-            return
-        }else {
+            return false;
+        } else {
             setEducation({...education, index: education.index +1})
             setEducationArray([...educationArray, education])
-            setInputCount(inputCount +1)
-            console.log(education);
+            setInputCount([...inputCount, inputCount[inputCount]])
+            console.log(inputCount); 
+            return true;
         }
     }
     
@@ -123,14 +124,12 @@ function App() {
             })
         })
 
-        console.log(`count: ${inputCount},index:  ${index}, eduIdx : ${educationArray[index].index}`);
     }
-
-    const handleDeleteEducation = (index) => {
-        const newArr = educationArray.slice(index +1)
-        console.log(newArr);
-
-        setEducationArray([educationArray, ...newArr])
+    
+    const handleDeleteEducation = (e,index) => {
+        e.preventDefault()
+        
+        console.log(`count: ${inputCount},index:  ${index}, eduIdx : ${educationArray[index].index}`);
     }
 
     function handleDeleteWork(index) {

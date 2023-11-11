@@ -49,14 +49,18 @@ function EducationForm({
     const handleSubmit = (e, index) => {
         e.preventDefault();
 
-        const updatedChandeButton = [...changeButton]
-        updatedChandeButton[index] = true
-        setChandeButton(updatedChandeButton)
+        if(data.length === index) {
+            return
+        } else {
+            const updatedChandeButton = [...changeButton]
+            updatedChandeButton[index] = true
+            setChandeButton(updatedChandeButton)
+        }
     }
 
     return (
         <>
-        {Array.from({length: count}).map((_,index) => (
+        {count.map((_,index) => (
             <div key={index}> 
                 <form onSubmit={(e) => handleSubmit(e, index)}>
                     <input 
@@ -86,7 +90,7 @@ function EducationForm({
                         <button onClick={(e) => {addEducation(e,index)}}>Add</button>
                     )}
                     <button
-                    onClick={() => handleDelete(index)}>Delete</button>
+                    onClick={(e) => handleDelete(e,index)}>Delete</button>
                 </form>
             </div>
         ))}
