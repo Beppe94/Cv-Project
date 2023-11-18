@@ -44,7 +44,7 @@ function EducationForm({
     )
     */
     
-    const [changeButton, setChandeButton] = useState(Array(count).fill(false));
+    const [changeButton, setChandeButton] = useState(Array().fill(false));
 
     const handleSubmit = (e, index) => {
         e.preventDefault();
@@ -59,10 +59,10 @@ function EducationForm({
     }
 
     return (
-        <>
-        {count.map((_,index) => (
-            <div key={index}> 
-                <form onSubmit={(e) => handleSubmit(e, index)}>
+        <div className="inputWrap">
+        {count.map((key,index) => (
+            <div key={index} className="inputForm"> 
+                <form onSubmit={(e) => handleSubmit(e, key)}>
                     <input 
                     required
                     type="text"
@@ -85,16 +85,19 @@ function EducationForm({
                     onChange={handleYear}
                     />
                     {changeButton[index] ? (
-                        <button onClick={(e) => {handleEdit(e,index)}}>Edit</button>
+                        <button onClick={(e) => 
+                            {handleEdit(e,index)}}>Edit</button>
                         ) : (
-                        <button onClick={(e) => {addEducation(e,index)}}>Add</button>
+                        <button onClick={(e) => 
+                            {addEducation(e)}}>Add</button>
                     )}
                     <button
-                    onClick={(e) => handleDelete(e,index)}>Delete</button>
+                    onClick={(e) => 
+                    handleDelete(e, key)}>Delete</button>
                 </form>
             </div>
         ))}
-        </>
+        </div>
     )
 }
 

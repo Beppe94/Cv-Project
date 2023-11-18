@@ -1,8 +1,10 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import PreviewCv from "./preview";
 import PersonalDataForm from "./personalForm";
 import EducationForm from "./educationComp";
 import ExperienceForm from "./experienceComp";
+import uniqid from "uniqid"
+
 
 function App() {
     const [personalInfo, setPersonalInfo] = useState({
@@ -15,12 +17,11 @@ function App() {
         description: ''
     });
 
+    const [educationArray, setEducationArray] = useState([])
+    
     const [inputCount, setInputCount] = useState([0])
 
-    const [educationArray, setEducationArray] = useState([])
-
     const [education, setEducation] = useState({
-        index: 0,
         school: '',
         degree: '',
         year: '',
@@ -100,12 +101,16 @@ function App() {
             edu.year === year)) {
             return;
         } else {
-            setEducation({...education, index: education.index +1})
-            setEducationArray([...educationArray, education])
-            setInputCount(prevCount => [
-                ...prevCount, prevCount[prevCount.length -1] +1
-            ])
+            const newEducation = {
+                index: uniqid(),
+                school: name,
+                degree: degree,
+                year: year,
+            }
+            setEducationArray([...educationArray, newEducation])
+            inputCount.push(newEducation.index)
         }
+
     }
     
     const handleEdit = (e,index) => {
@@ -115,8 +120,8 @@ function App() {
         const year = form.childNodes[2].value
         
         setEducationArray((prevEducationArray) => {
-            return prevEducationArray.map((edu, idx) => {
-                if(index === idx) {
+            return prevEducationArray.map((edu) => {
+                if(edu.index === index) {
                     return edu = {index: prevEducationArray[index].index,
                     school: name, degree: degree, year: year}
                 }
@@ -126,12 +131,36 @@ function App() {
 
     }
     
-    const handleDeleteEducation = (e,index) => {
+    const handleDeleteEducation = (e) => {
         e.preventDefault()
-        
-        console.log(`count: ${inputCount},index:  ${index}, eduIdx : ${educationArray[index].index}`);
-    }
 
+        const parent = e.target.closest('form').parentNode.parentNode;
+
+        if(parent.childNodes.length <= 1) {
+            return
+        }
+
+        const obj = e.target.closest('form');
+        const name = obj.childNodes[0].value
+        const degree = obj.childNodes[1].value
+        const year = obj.childNodes[2].value
+        
+        const matchingIndex = educationArray.findIndex(edu =>
+            edu.school === name &&
+            edu.degree === degree &&
+            edu.year === year
+        );
+
+        
+        const newEduArray = educationArray.filter(
+            (element) => 
+            element.index !== educationArray[matchingIndex].index)
+            
+        setEducationArray(newEduArray)
+            
+        e.target.closest('form').parentNode.remove()
+    }
+    
     function handleDeleteWork(index) {
         
         const updateExperience = workExperience.slice();

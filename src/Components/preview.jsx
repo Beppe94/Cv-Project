@@ -50,7 +50,7 @@ function PreviewCv({data, userEducation, userExperience, handleDelete}) {
                                 <b>School Name: </b>{education.school} <br />
                                 <b>Degree: </b> {education.degree} <br />
                                 <b>Year: </b> {education.year} <br />
-                                {education.index}
+                                edu index: {education.index}
                             </li>
                         ))}
                     </ul>
