@@ -19,12 +19,13 @@ function App() {
 
     const [educationArray, setEducationArray] = useState([])
     
-    const [inputCount, setInputCount] = useState([0])
+    const [inputCount, setInputCount] = useState([])
 
     const [education, setEducation] = useState({
         school: '',
         degree: '',
         year: '',
+        change: false
     });
     
     const [workExperience, setWorkExperience] = useState([]);
@@ -91,46 +92,70 @@ function App() {
         const degree = form.childNodes[1].value
         const year = form.childNodes[2].value
         
-        if(name === '' || degree === '' || year === '') {
+        if(name === '' || degree === '' || year === '' ||
+            name === ' ' || degree === ' ' || year === ' ') {
+            alert('Insert Valid Education')
             return
-        }
-        
-        if(educationArray.some(edu =>
-            edu.school === name && 
-            edu.degree === degree && 
-            edu.year === year)) {
-            return;
         } else {
             const newEducation = {
                 index: uniqid(),
                 school: name,
                 degree: degree,
                 year: year,
+                change: true
             }
-            setEducationArray([...educationArray, newEducation])
-            inputCount.push(newEducation.index)
-        }
 
+            setEducationArray([...educationArray, newEducation])
+
+            setInputCount(prev => [...prev, newEducation.index])
+        }
     }
-    
-    const handleEdit = (e,index) => {
+
+    const firstEdit = (e, data) => {
+
+        console.log(data[0].index)
+    }
+
+    const handleEdit = (e, key) => {
         const form = e.target.closest('form')
         const name = form.childNodes[0].value
         const degree = form.childNodes[1].value
         const year = form.childNodes[2].value
         
+/*
         setEducationArray((prevEducationArray) => {
             return prevEducationArray.map((edu) => {
-                if(edu.index === index) {
-                    return edu = {index: prevEducationArray[index].index,
-                    school: name, degree: degree, year: year}
+                if(prevIndex === edu.index) {
+                    return edu = {...edu, name: name, degree: degree, year: year}
                 }
                 return edu
             })
-        })
-
+        })*/
     }
     
+    
+    
+
+    const handleFirstDelete = (e, data) => {
+        e.preventDefault();
+
+        const parent = e.target.closest('form').parentNode.parentNode;
+
+        if(parent.childNodes.length <= 1) {
+            return
+        }
+
+        const removeIndex = data[0]
+        
+        console.log(removeIndex.index);
+        const newArr = educationArray.filter(
+            (element) => element.index !== removeIndex.index)
+        
+        setEducationArray([...newArr])
+        
+        e.target.closest('form').parentNode.remove()
+    }
+
     const handleDeleteEducation = (e) => {
         e.preventDefault()
 
@@ -140,10 +165,10 @@ function App() {
             return
         }
 
-        const obj = e.target.closest('form');
-        const name = obj.childNodes[0].value
-        const degree = obj.childNodes[1].value
-        const year = obj.childNodes[2].value
+        const form = e.target.closest('form');
+        const name = form.childNodes[0].value
+        const degree = form.childNodes[1].value
+        const year = form.childNodes[2].value
         
         const matchingIndex = educationArray.findIndex(edu =>
             edu.school === name &&
@@ -155,12 +180,13 @@ function App() {
         const newEduArray = educationArray.filter(
             (element) => 
             element.index !== educationArray[matchingIndex].index)
-            
+        
         setEducationArray(newEduArray)
-            
         e.target.closest('form').parentNode.remove()
     }
     
+    
+
     function handleDeleteWork(index) {
         
         const updateExperience = workExperience.slice();
@@ -185,6 +211,8 @@ function App() {
                 <div>
                     <h2>Education</h2>
                     <EducationForm
+                    firstEdit={firstEdit}
+                    firstDel={handleFirstDelete}
                     count={inputCount}
                     data={educationArray}
                     handleEdit={handleEdit}

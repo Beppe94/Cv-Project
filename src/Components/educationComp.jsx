@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function EducationForm({
-    count, data, 
+    count, data, firstDel, firstEdit,
     handleEdit, handleSchool, 
     handleDegree, handleYear,
     handleDelete, addEducation}) {
@@ -43,27 +43,27 @@ function EducationForm({
         </div>
     )
     */
-    
-    const [changeButton, setChandeButton] = useState(Array().fill(false));
+    const [firstButton, setFirstButton] = useState(false)
+    const [changeButton, setChangeButton] = useState([]);
 
     const handleSubmit = (e, index) => {
         e.preventDefault();
-
-        if(data.length === index) {
-            return
-        } else {
-            const updatedChandeButton = [...changeButton]
-            updatedChandeButton[index] = true
-            setChandeButton(updatedChandeButton)
-        }
+    
+        //if(data.length === 1) {
+        //    setFirstButton(true)
+        //} else {
+        //    const newData = {...data[index+1], change: false}
+        //    setChangeButton(prev => [...prev, newData])
+        //}
+        //console.log(index);
     }
 
+    
     return (
         <div className="inputWrap">
-        {count.map((key,index) => (
-            <div key={index} className="inputForm"> 
-                <form onSubmit={(e) => handleSubmit(e, key)}>
-                    <input 
+            <div>
+                <form onSubmit={(e) => handleSubmit(e)}>
+                <input 
                     required
                     type="text"
                     placeholder="School Name"
@@ -84,19 +84,63 @@ function EducationForm({
                     value={data.year}
                     onChange={handleYear}
                     />
-                    {changeButton[index] ? (
+                    {firstButton ? (
                         <button onClick={(e) => 
-                            {handleEdit(e,index)}}>Edit</button>
+                        firstEdit(e, data)}
+                        >Edit
+                        </button>
                         ) : (
                         <button onClick={(e) => 
-                            {addEducation(e)}}>Add</button>
+                        addEducation(e)}
+                        >Add
+                        </button>
                     )}
+                    
                     <button
                     onClick={(e) => 
-                    handleDelete(e, key)}>Delete</button>
+                        firstDel(e, data)}
+                    >Delete
+                    </button> 
                 </form>
             </div>
-        ))}
+            
+            {count.map((id,index) => (
+                <div key={index} className="inputForm"> 
+                    <form onSubmit={(e) => handleSubmit(e, count[index+1])}>
+                        <input 
+                        required
+                        type="text"
+                        placeholder="School Name"
+                        value={data.school}
+                        onChange={handleSchool}
+                        />
+                        <input 
+                        required
+                        type="text" 
+                        placeholder="Degree Title"
+                        value={data.degree}
+                        onChange={handleDegree}
+                        />
+                        <input 
+                        required
+                        type="text" 
+                        placeholder="Year"
+                        value={data.year}
+                        onChange={handleYear}
+                        />
+                        {data ? (
+                            <button onClick={(e) => 
+                                {addEducation(e)}}>Add</button>
+                                ) : (
+                            <button onClick={(e) => 
+                                {handleEdit(e, count[index +1])}}>Edit</button>
+                            )}
+                        <button
+                        onClick={(e) => 
+                        handleDelete(e, id)}>Delete</button>
+                    </form>
+                </div>
+            ))}
         </div>
     )
 }
