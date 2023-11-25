@@ -1,8 +1,10 @@
 import {useState, useEffect} from "react";
 import PreviewCv from "./preview";
 import PersonalDataForm from "./personalForm";
-import EducationForm from "./educationComp";
+//import EducationForm from "./educationComp2";
+import EducationSection from "./educationComp";
 import ExperienceForm from "./experienceComp";
+import data from './data'
 import uniqid from "uniqid"
 
 
@@ -21,14 +23,32 @@ function App() {
     
     const [inputCount, setInputCount] = useState([])
 
-    const [education, setEducation] = useState({
-        school: '',
-        degree: '',
-        year: '',
-        change: false
-    });
-    
+    const [education, setEducation] = useState([]);
     const [workExperience, setWorkExperience] = useState([]);
+    
+    const [sectionOpen, setSectionOpen] = useState(null)
+
+    const [sections, setSections] = useState(data.sections)
+
+    const setOpen = (sectionName) => {
+        setSectionOpen(sectionName)
+    }
+
+    function createForm(array, obj) {
+
+        const section = structuredClone(sections[array])
+        section.push(obj)
+        setSections({...sections, [array]: section})
+    }
+
+    const educationForm = () => 
+        createForm('educations', {
+            schoolName: '',
+            degree: '',
+            year: '',
+            location: '',
+            id: uniqid(),
+        });
 
     const uploadImage = (e) => {
         setPersonalInfo({...personalInfo,
@@ -67,24 +87,7 @@ function App() {
         })
     }
 
-    const handleSchoolName = (e) => {
-        setEducation({...education,
-        school: e.target.value
-        })
-    }
-
-    const handleSchoolDegree = (e) => {
-        setEducation({...education,
-        degree: e.target.value
-        })
-    }
-
-    const handleSchoolYear = (e) => {
-        setEducation({...education,
-        year: e.target.value
-        })
-    }
-
+    
     const handleAddEducation = (e) => {
         
         const form = e.target.closest('form')
@@ -133,8 +136,7 @@ function App() {
         })*/
     }
     
-    
-    
+
 
     const handleFirstDelete = (e, data) => {
         e.preventDefault();
@@ -195,6 +197,10 @@ function App() {
         setWorkExperience(updateExperience);
     }
 
+    useEffect(() => {
+        console.log(sectionOpen);
+    })
+    
 
     return (
         <div className="App">
@@ -209,6 +215,13 @@ function App() {
                 handleDescription={handleDescription}
                 />
                 <div>
+                    <EducationSection
+                    data={sections.educations}
+                    isOpen={sectionOpen === 'Education'}
+                    setOpen={setOpen}
+                    createForm={educationForm}
+                    />
+                    {/*
                     <h2>Education</h2>
                     <EducationForm
                     firstEdit={firstEdit}
@@ -221,7 +234,7 @@ function App() {
                     handleYear={handleSchoolYear}
                     addEducation={handleAddEducation}
                     handleDelete={handleDeleteEducation}
-                    />
+                    />*/}
                 </div>
                 <div>
                     <h2>Work Experience</h2>
@@ -234,7 +247,7 @@ function App() {
             <div>
                 <PreviewCv 
                 data={personalInfo}
-                userEducation={educationArray}
+                userEducation={sections.educations}
                 userExperience={workExperience}
                 handleDelete={handleDeleteWork}
                 />

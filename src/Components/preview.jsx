@@ -45,14 +45,15 @@ function PreviewCv({data, userEducation, userExperience, handleDelete}) {
                 </div>*/}
                 <div>
                     <ul>
-                        {userEducation.map((education, index) =>(
+                        { userEducation.map((education, index) =>(
                             <li key={index}>
                                 <b>School Name: </b>{education.school} <br />
                                 <b>Degree: </b> {education.degree} <br />
                                 <b>Year: </b> {education.year} <br />
-                                edu index: {education.index}
+                                <b>Location: </b>{education.location} <br />
+                                edu index: {education.id}
                             </li>
-                        ))}
+                        )) }
                     </ul>
                 </div>
             </div>

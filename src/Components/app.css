@@ -118,6 +118,14 @@ input {
   }
 }
 
+.section {
+  visibility: hidden;
+}
+
+.section.open {
+  visibility: visible;
+}
+
 /* resume preview style */
 
 .resumePreview {
