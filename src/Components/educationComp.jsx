@@ -2,7 +2,12 @@ import ExpandSection from "./expandSection"
 import EducationForm from "./educationForm"
 import Display from "./display"
 
-function EducationSection({data, isOpen, setOpen, createForm}) {
+function EducationSection({
+    data, 
+    isOpen, 
+    setOpen, 
+    createForm, 
+    onChange}) {
 
     return (
         <div>
@@ -13,8 +18,11 @@ function EducationSection({data, isOpen, setOpen, createForm}) {
             />
             <div className={`section ${isOpen ? 'open' : ''}`}>
                 <Display 
-                data={data}
-                Form={EducationForm}/>
+                form={data}
+                Form={EducationForm}
+                onChange={onChange}
+                arrayName='educations'
+                />
                 <button onClick={createForm}>+ Education</button>
             </div>
         </div>

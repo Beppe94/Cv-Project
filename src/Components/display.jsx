@@ -1,13 +1,29 @@
+import ClosedForm from "./closedForm";
+
 function Display({
-    data,
-    Form
+    form,
+    onChange,
+    Form,
+    arrayName
 }) {
     return (
         <div>
-            {data.map((edu) => 
-            <Form
-            form={edu}
-            />)}
+            {form.map((edu) => 
+                edu.isClosed ? (
+                    <ClosedForm 
+                        form={edu}
+                        title={edu.schoolName}
+                        key={edu.id}
+                        arrayName={arrayName}
+                    />
+                ) : (
+                    <Form
+                    form={edu}
+                    onChange={onChange}
+                    key={edu.id}
+                    />
+                )
+            )}
         </div>
     )
 }

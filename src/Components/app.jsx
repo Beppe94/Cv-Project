@@ -34,6 +34,25 @@ function App() {
         setSectionOpen(sectionName)
     }
 
+    function handleChange(e) {
+        const {key} = e.target.dataset;
+        const input = e.target.value;
+        const form = e.target.closest('.sectionForm');
+        const {id} = form;
+        const {arrayName} = form.dataset;
+
+        const section = sections[arrayName]; 
+
+        setSections({...sections,
+        [arrayName]: section.map((object) => {
+            if(object.id === id) {
+                object[key] = input;
+            }
+            return object;
+        })})
+
+    }
+
     function createForm(array, obj) {
 
         const section = structuredClone(sections[array])
@@ -47,6 +66,7 @@ function App() {
             degree: '',
             year: '',
             location: '',
+            isClosed: false,
             id: uniqid(),
         });
 
@@ -198,7 +218,7 @@ function App() {
     }
 
     useEffect(() => {
-        console.log(sectionOpen);
+        console.log(sections);
     })
     
 
@@ -217,6 +237,7 @@ function App() {
                 <div>
                     <EducationSection
                     data={sections.educations}
+                    onChange={handleChange}
                     isOpen={sectionOpen === 'Education'}
                     setOpen={setOpen}
                     createForm={educationForm}
