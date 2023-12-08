@@ -19,16 +19,13 @@ function App() {
         description: ''
     });
 
-    const [educationArray, setEducationArray] = useState([])
-    
-    const [inputCount, setInputCount] = useState([])
-
-    const [education, setEducation] = useState([]);
     const [workExperience, setWorkExperience] = useState([]);
     
     const [sectionOpen, setSectionOpen] = useState(null)
-
+    
     const [sections, setSections] = useState(data.sections)
+    
+    const [prevState, setPrevState] = useState(null)
 
     const setOpen = (sectionName) => {
         setSectionOpen(sectionName)
@@ -54,6 +51,7 @@ function App() {
     }
 
     function createForm(array, obj) {
+        setPrevState(null);
 
         const section = structuredClone(sections[array])
         section.push(obj)
@@ -69,6 +67,39 @@ function App() {
             isClosed: false,
             id: uniqid(),
         });
+    
+    function toggleForm(e, key) {
+        const sectionForm = e.target.closest('.sectionForm');
+        const {id} = sectionForm;
+        const {arrayName} = sectionForm.dataset;
+        const section = sections[arrayName];
+
+        setSections({...sections,
+            [arrayName]: section.map((edu) => {
+                if(edu.id === id) {
+                    setPrevState(Object.assign({}, edu));
+                    edu[key] = !edu[key];
+                }
+                return edu;
+            }),
+        });
+    }
+    
+    const collapseForm = (e) => toggleForm(e, 'isClosed');
+
+    function removeForm(e) {
+        const form = e.target.closest('.sectionForm');
+        const {id} = form;
+        const {arrayName} = form.dataset;
+        const section = sections[arrayName];
+
+        
+        setSections({...sections,
+            [arrayName]: section.filter((edu) => edu.id !== id),
+        });
+        
+        
+    }
 
     const uploadImage = (e) => {
         setPersonalInfo({...personalInfo,
@@ -107,107 +138,6 @@ function App() {
         })
     }
 
-    
-    const handleAddEducation = (e) => {
-        
-        const form = e.target.closest('form')
-        const name = form.childNodes[0].value
-        const degree = form.childNodes[1].value
-        const year = form.childNodes[2].value
-        
-        if(name === '' || degree === '' || year === '' ||
-            name === ' ' || degree === ' ' || year === ' ') {
-            alert('Insert Valid Education')
-            return
-        } else {
-            const newEducation = {
-                index: uniqid(),
-                school: name,
-                degree: degree,
-                year: year,
-                change: true
-            }
-
-            setEducationArray([...educationArray, newEducation])
-
-            setInputCount(prev => [...prev, newEducation.index])
-        }
-    }
-
-    const firstEdit = (e, data) => {
-
-        console.log(data[0].index)
-    }
-
-    const handleEdit = (e, key) => {
-        const form = e.target.closest('form')
-        const name = form.childNodes[0].value
-        const degree = form.childNodes[1].value
-        const year = form.childNodes[2].value
-        
-/*
-        setEducationArray((prevEducationArray) => {
-            return prevEducationArray.map((edu) => {
-                if(prevIndex === edu.index) {
-                    return edu = {...edu, name: name, degree: degree, year: year}
-                }
-                return edu
-            })
-        })*/
-    }
-    
-
-
-    const handleFirstDelete = (e, data) => {
-        e.preventDefault();
-
-        const parent = e.target.closest('form').parentNode.parentNode;
-
-        if(parent.childNodes.length <= 1) {
-            return
-        }
-
-        const removeIndex = data[0]
-        
-        console.log(removeIndex.index);
-        const newArr = educationArray.filter(
-            (element) => element.index !== removeIndex.index)
-        
-        setEducationArray([...newArr])
-        
-        e.target.closest('form').parentNode.remove()
-    }
-
-    const handleDeleteEducation = (e) => {
-        e.preventDefault()
-
-        const parent = e.target.closest('form').parentNode.parentNode;
-
-        if(parent.childNodes.length <= 1) {
-            return
-        }
-
-        const form = e.target.closest('form');
-        const name = form.childNodes[0].value
-        const degree = form.childNodes[1].value
-        const year = form.childNodes[2].value
-        
-        const matchingIndex = educationArray.findIndex(edu =>
-            edu.school === name &&
-            edu.degree === degree &&
-            edu.year === year
-        );
-
-        
-        const newEduArray = educationArray.filter(
-            (element) => 
-            element.index !== educationArray[matchingIndex].index)
-        
-        setEducationArray(newEduArray)
-        e.target.closest('form').parentNode.remove()
-    }
-    
-    
 
     function handleDeleteWork(index) {
         
@@ -217,10 +147,6 @@ function App() {
         setWorkExperience(updateExperience);
     }
 
-    useEffect(() => {
-        console.log(sections);
-    })
-    
 
     return (
         <div className="App">
@@ -241,21 +167,9 @@ function App() {
                     isOpen={sectionOpen === 'Education'}
                     setOpen={setOpen}
                     createForm={educationForm}
+                    collapseForm={collapseForm}
+                    removeForm={removeForm}
                     />
-                    {/*
-                    <h2>Education</h2>
-                    <EducationForm
-                    firstEdit={firstEdit}
-                    firstDel={handleFirstDelete}
-                    count={inputCount}
-                    data={educationArray}
-                    handleEdit={handleEdit}
-                    handleSchool={handleSchoolName}
-                    handleDegree={handleSchoolDegree}
-                    handleYear={handleSchoolYear}
-                    addEducation={handleAddEducation}
-                    handleDelete={handleDeleteEducation}
-                    />*/}
                 </div>
                 <div>
                     <h2>Work Experience</h2>

@@ -4,23 +4,28 @@ function Display({
     form,
     onChange,
     Form,
-    arrayName
+    arrayName,
+    collapseForm,
+    removeForm
 }) {
     return (
         <div>
             {form.map((edu) => 
                 edu.isClosed ? (
                     <ClosedForm 
-                        form={edu}
-                        title={edu.schoolName}
-                        key={edu.id}
-                        arrayName={arrayName}
+                    key={edu.id}
+                    onClick={collapseForm}
+                    form={edu}
+                    title={edu.schoolName}
+                    arrayName={arrayName}
                     />
                 ) : (
                     <Form
                     form={edu}
                     onChange={onChange}
                     key={edu.id}
+                    save={collapseForm}
+                    remove={removeForm}
                     />
                 )
             )}

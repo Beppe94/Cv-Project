@@ -1,7 +1,7 @@
 function EducationForm(props) {
 
     const {schoolName, degree, year, location, id} = props.form;
-    const {onChange} = props;
+    const {onChange, save, remove} = props;
 
     return (
         <form
@@ -41,8 +41,8 @@ function EducationForm(props) {
             onChange={onChange}
             data-key="location"
             />
-            <button>Save</button>
-            <button>Remove</button>
+            <button onClick={save}>Save</button>
+            <button onClick={remove}>Remove</button>
         </form>
     )
 }

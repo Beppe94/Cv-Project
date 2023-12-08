@@ -7,7 +7,9 @@ function EducationSection({
     isOpen, 
     setOpen, 
     createForm, 
-    onChange}) {
+    onChange,
+    collapseForm,
+    removeForm}) {
 
     return (
         <div>
@@ -22,6 +24,8 @@ function EducationSection({
                 Form={EducationForm}
                 onChange={onChange}
                 arrayName='educations'
+                collapseForm={collapseForm}
+                removeForm={removeForm}
                 />
                 <button onClick={createForm}>+ Education</button>
             </div>
