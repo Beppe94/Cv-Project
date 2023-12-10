@@ -1,4 +1,5 @@
 import ClosedForm from "./closedForm";
+import './styles/display.css'
 
 function Display({
     form,
@@ -9,7 +10,7 @@ function Display({
     removeForm
 }) {
     return (
-        <div>
+        <div className="displayEducation">
             {form.map((edu) => 
                 edu.isClosed ? (
                     <ClosedForm 

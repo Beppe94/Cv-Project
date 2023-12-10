@@ -12,6 +12,7 @@ function PersonalDataForm({
             <h2>Personal Information</h2>
 
             <div className="personName">
+                <h2>Name</h2>
                 <input
                 required
                 maxLength={15}
@@ -20,6 +21,7 @@ function PersonalDataForm({
                 value={data.name}
                 onChange={handleName}
                 />
+                <h2>Surname</h2>
                 <input
                 required
                 maxLength={15}
@@ -29,9 +31,10 @@ function PersonalDataForm({
                 onChange={handleSurname}
                 />
             </div>
-            <div>
+            <div className="personalImage">
+                <h2>Choose an Image</h2>
                 <label htmlFor="file" id="fileImage">
-                    {data.fileName ? data.fileName : "Choose an image "}
+                    {data.fileName ? '' : "Choose an image "}
                 </label>
                 <input 
                 type="file" 
@@ -41,6 +44,7 @@ function PersonalDataForm({
                 />
             </div>
             <div>
+                <h2>Phone Number</h2>
                 <input
                 required
                 type="number" 
@@ -48,6 +52,7 @@ function PersonalDataForm({
                 value={data.phoneNumber.slice(0, 14)}
                 onChange={handlePhoneNumber}
                 />
+                <h2>Email</h2>
                 <input
                 required
                 type="email" 
@@ -57,12 +62,13 @@ function PersonalDataForm({
                 />
             </div>
             <div>
+                <h2>Description</h2>
                 <textarea 
                 name="description"
-                cols={40}
-                rows={10}
+                cols={30}
+                rows={5}
                 value={data.description}
-                placeholder="Talk about yourself"
+                placeholder="Tell us about yourself"
                 onChange={handleDescription}>
                 </textarea>
             </div>

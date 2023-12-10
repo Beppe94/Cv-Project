@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
-import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { faGraduationCap } from "@fortawesome/free-solid-svg-icons";
+import './styles/expandSection.css'
 
 function ExpandSection({
     isOpen, 
@@ -8,14 +9,18 @@ function ExpandSection({
     sectionName}) {
 
     const up = <FontAwesomeIcon icon={faChevronUp} />
-    const down = <FontAwesomeIcon icon={faChevronDown} />
+    const cap = <FontAwesomeIcon icon={faGraduationCap}/>
 
     return (
-        <button
+        <button className="button"
         onClick={() => setOpen(isOpen ? 'open' : sectionName)}
         >
-            {sectionName} 
-            <i>{isOpen ? down : up}</i>
+            <h2>
+                {cap}
+                {sectionName}
+            </h2>
+                
+            <i className={isOpen ? 'up' : 'down'}>{up}</i>
         </button>
     );
 }

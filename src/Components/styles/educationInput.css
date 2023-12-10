@@ -1,0 +1,46 @@
+.educationInput {
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+    box-shadow: 0 0 5px 3px grey;
+}
+
+.educationInput form {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffff;
+    padding: 10px;
+}
+
+.educationInput form input {
+    border: none;
+    border-radius: 10px;
+    height: 40px;
+    background-color: #dee1e4;
+    padding: 10px;
+}
+
+.buttonForm {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.buttonForm button {
+    font-weight: 600;
+    width: 80px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    font-size: 17px;
+}
+
+.buttonForm button:nth-child(1) {
+    color: #ffff;
+    background-color: rgb(1, 135, 245);
+}
+
+.buttonForm button:nth-child(2) {
+    color: #ffff;
+    background-color: rgb(245, 1, 1);
+}

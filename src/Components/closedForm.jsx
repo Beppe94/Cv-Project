@@ -4,12 +4,12 @@ function ClosedForm(props) {
 
     return (
         <button 
-        className="sectionForm"
+        className="closedForm sectionForm"
         id={id}
         onClick={onClick}
         data-array-name={arrayName}
         >
-            {title}
+            <h2>{title}</h2>
         </button>
     )
 }

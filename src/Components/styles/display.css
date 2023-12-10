@@ -1,0 +1,36 @@
+.displayEducation {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.closedForm {
+    height: 45px;
+    background-color: #ffff;
+    box-shadow: 0 0 5px 5px grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.addEducation {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+}
+
+.addEducation button {
+    background-color: #ffff;
+    height: 70px;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 0 10px 5px grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.addEducation button h2 {
+    border-radius: 10px;
+    padding: 10px;
+    background-color: rgb(216, 211, 211);
+}

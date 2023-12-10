@@ -1,12 +1,11 @@
-import {useState, useEffect} from "react";
+import {useState} from "react";
 import PreviewCv from "./preview";
 import PersonalDataForm from "./personalForm";
-//import EducationForm from "./educationComp2";
 import EducationSection from "./educationComp";
 import ExperienceForm from "./experienceComp";
 import data from './data'
 import uniqid from "uniqid"
-
+import './styles/app.css'
 
 function App() {
     const [personalInfo, setPersonalInfo] = useState({
@@ -24,8 +23,6 @@ function App() {
     const [sectionOpen, setSectionOpen] = useState(null)
     
     const [sections, setSections] = useState(data.sections)
-    
-    const [prevState, setPrevState] = useState(null)
 
     const setOpen = (sectionName) => {
         setSectionOpen(sectionName)
@@ -51,7 +48,6 @@ function App() {
     }
 
     function createForm(array, obj) {
-        setPrevState(null);
 
         const section = structuredClone(sections[array])
         section.push(obj)
@@ -77,7 +73,6 @@ function App() {
         setSections({...sections,
             [arrayName]: section.map((edu) => {
                 if(edu.id === id) {
-                    setPrevState(Object.assign({}, edu));
                     edu[key] = !edu[key];
                 }
                 return edu;
