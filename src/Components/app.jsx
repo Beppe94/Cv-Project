@@ -1,11 +1,11 @@
 import {useState} from "react";
 import PreviewCv from "./preview";
 import PersonalDataForm from "./personalForm";
-import EducationSection from "./educationComp";
-import ExperienceForm from "./experienceComp";
+import EducationSection from "./Education/educationComp";
 import data from './data'
 import uniqid from "uniqid"
 import './styles/app.css'
+import ExperienceSection from "./Experience/experiencComp";
 
 function App() {
     const [personalInfo, setPersonalInfo] = useState({
@@ -17,85 +17,11 @@ function App() {
         email: '',
         description: ''
     });
-
-    const [workExperience, setWorkExperience] = useState([]);
     
     const [sectionOpen, setSectionOpen] = useState(null)
     
     const [sections, setSections] = useState(data.sections)
-
-    const setOpen = (sectionName) => {
-        setSectionOpen(sectionName)
-    }
-
-    function handleChange(e) {
-        const {key} = e.target.dataset;
-        const input = e.target.value;
-        const form = e.target.closest('.sectionForm');
-        const {id} = form;
-        const {arrayName} = form.dataset;
-
-        const section = sections[arrayName]; 
-
-        setSections({...sections,
-        [arrayName]: section.map((object) => {
-            if(object.id === id) {
-                object[key] = input;
-            }
-            return object;
-        })})
-
-    }
-
-    function createForm(array, obj) {
-
-        const section = structuredClone(sections[array])
-        section.push(obj)
-        setSections({...sections, [array]: section})
-    }
-
-    const educationForm = () => 
-        createForm('educations', {
-            schoolName: '',
-            degree: '',
-            year: '',
-            location: '',
-            isClosed: false,
-            id: uniqid(),
-        });
     
-    function toggleForm(e, key) {
-        const sectionForm = e.target.closest('.sectionForm');
-        const {id} = sectionForm;
-        const {arrayName} = sectionForm.dataset;
-        const section = sections[arrayName];
-
-        setSections({...sections,
-            [arrayName]: section.map((edu) => {
-                if(edu.id === id) {
-                    edu[key] = !edu[key];
-                }
-                return edu;
-            }),
-        });
-    }
-    
-    const collapseForm = (e) => toggleForm(e, 'isClosed');
-
-    function removeForm(e) {
-        const form = e.target.closest('.sectionForm');
-        const {id} = form;
-        const {arrayName} = form.dataset;
-        const section = sections[arrayName];
-
-        
-        setSections({...sections,
-            [arrayName]: section.filter((edu) => edu.id !== id),
-        });
-        
-        
-    }
-
     const uploadImage = (e) => {
         setPersonalInfo({...personalInfo,
             fileName: e.target.files[0].name,
@@ -133,15 +59,83 @@ function App() {
         })
     }
 
-
-    function handleDeleteWork(index) {
-        
-        const updateExperience = workExperience.slice();
-        updateExperience.splice(index, 1);
-
-        setWorkExperience(updateExperience);
+    const setOpen = (sectionName) => {
+        setSectionOpen(sectionName)
     }
 
+    function handleChange(e) {
+        const {key} = e.target.dataset;
+        const input = e.target.value;
+        const form = e.target.closest('.sectionForm');
+        const {id} = form;
+        const {arrayName} = form.dataset;
+
+        const section = sections[arrayName]; 
+
+        setSections({...sections,
+        [arrayName]: section.map((object) => {
+            if(object.id === id) {
+                object[key] = input;
+            }
+            return object;
+        })})
+    }
+
+    function createForm(array, obj) {
+        const section = structuredClone(sections[array])
+        section.push(obj)
+        setSections({...sections, [array]: section})
+    }
+
+    const educationForm = () => 
+        createForm('educations', {
+            schoolName: '',
+            degree: '',
+            year: '',
+            location: '',
+            isClosed: false,
+            id: uniqid(),
+        });
+
+    const experienceForm = () => 
+        createForm('experiences', {
+            companyName: '',
+            role: '',
+            startingDate: '',
+            endingDate: '',
+            description: '',
+            isClosed: false,
+            id: uniqid(),
+        })
+    
+    function toggleForm(e, key) {
+        const sectionForm = e.target.closest('.sectionForm');
+        const {id} = sectionForm;
+        const {arrayName} = sectionForm.dataset;
+        const section = sections[arrayName];
+
+        setSections({...sections,
+            [arrayName]: section.map((edu) => {
+                if(edu.id === id) {
+                    edu[key] = !edu[key];
+                }
+                return edu;
+            }),
+        });
+    }
+    
+    const collapseForm = (e) => toggleForm(e, 'isClosed');
+
+    function removeForm(e) {
+        const form = e.target.closest('.sectionForm');
+        const {id} = form;
+        const {arrayName} = form.dataset;
+        const section = sections[arrayName];
+
+        setSections({...sections,
+            [arrayName]: section.filter((edu) => edu.id !== id),
+        });
+    }
 
     return (
         <div className="App">
@@ -165,12 +159,15 @@ function App() {
                     collapseForm={collapseForm}
                     removeForm={removeForm}
                     />
-                </div>
-                <div>
-                    <h2>Work Experience</h2>
-                    <ExperienceForm
-                    data={workExperience}
-                    handleExperience={setWorkExperience}
+                
+                    <ExperienceSection 
+                    data={sections.experiences}
+                    onChange={handleChange}
+                    isOpen={sectionOpen === 'Experience'}
+                    setOpen={setOpen}
+                    createForm={experienceForm}
+                    collapseForm={collapseForm}
+                    removeForm={removeForm}
                     />
                 </div>
             </div>
@@ -178,8 +175,6 @@ function App() {
                 <PreviewCv 
                 data={personalInfo}
                 userEducation={sections.educations}
-                userExperience={workExperience}
-                handleDelete={handleDeleteWork}
                 />
             </div>
         </div>

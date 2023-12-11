@@ -11,20 +11,20 @@ function Display({
 }) {
     return (
         <div className="displayEducation">
-            {form.map((edu) => 
-                edu.isClosed ? (
+            {form.map((data) => 
+                data.isClosed ? (
                     <ClosedForm 
-                    key={edu.id}
+                    key={data.id}
                     onClick={collapseForm}
-                    form={edu}
-                    title={edu.schoolName}
+                    form={data}
+                    title={data.schoolName || data.companyName}
                     arrayName={arrayName}
                     />
                 ) : (
                     <Form
-                    form={edu}
+                    form={data}
                     onChange={onChange}
-                    key={edu.id}
+                    key={data.id}
                     save={collapseForm}
                     remove={removeForm}
                     />

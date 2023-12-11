@@ -1,4 +1,4 @@
-import './styles/educationInput.css'
+import '../styles/educationInput.css'
 
 function EducationForm(props) {
     const {schoolName, degree, year, location, id} = props.form;
@@ -43,6 +43,7 @@ function EducationForm(props) {
                 onChange={onChange}
                 data-key="location"
                 />
+                
                 <div className='buttonForm'>
                     <button onClick={save}>Save</button>
                     <button onClick={remove}>Remove</button>

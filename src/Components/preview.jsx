@@ -60,23 +60,7 @@ function PreviewCv({data, userEducation, userExperience, handleDelete}) {
             <div>
                 <h2>Experience</h2>
                 <div>
-                    {userExperience.map((exp, index) => (
-                        <div>
-                            <div key={index}>
-                            <p> <b>Company Name: </b> {exp.companyName}</p>
-                            <p> <b>Position: </b> {exp.position}</p>
-                            <div>
-                                <p> <b>Starting Date: </b> {exp.startingDate}</p>
-                                <p> <b>Ending Date: </b> {exp.endingDate}</p>
-                            </div>
-                            <p> <b>Description: </b> {exp.roleDescription}</p>
-                            
-                            <button 
-                            onClick={() => handleDelete(index)}
-                            >Remove</button>
-                            </div>
-                        </div>
-                    ))}
+                    
                 </div>
             </div>
         </div>

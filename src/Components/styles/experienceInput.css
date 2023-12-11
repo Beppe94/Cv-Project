@@ -1,0 +1,28 @@
+.experienceInput {
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+    box-shadow: 0 0 5px 3px grey;
+}
+
+.experienceInput form {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffff;
+    padding: 10px;
+}
+
+.experienceInput form input {
+    border: none;
+    border-radius: 10px;
+    height: 40px;
+    background-color: #dee1e4;
+    padding: 10px;
+}
+
+.experienceInput textarea {
+    border: none;
+    border-radius: 10px;
+    background-color: #dee1e4;
+    padding: 10px;
+}
