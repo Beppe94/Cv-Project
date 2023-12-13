@@ -175,6 +175,7 @@ function App() {
                 <PreviewCv 
                 data={personalInfo}
                 userEducation={sections.educations}
+                userExperience={sections.experiences}
                 />
             </div>
         </div>

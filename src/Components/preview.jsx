@@ -1,4 +1,4 @@
-function PreviewCv({data, userEducation, userExperience, handleDelete}) {
+function PreviewCv({data, userEducation, userExperience}) {
 
     const defaultImg = './src/Assets/default.png'
 
@@ -31,21 +31,9 @@ function PreviewCv({data, userEducation, userExperience, handleDelete}) {
             </div>
             <div>
                 <h2>Education</h2>
-                {/*
-                <div> 
-                    <ul>
-                    {userEducation.filter(
-                        education => education !== '').map(
-                        (element, index) => (
-                            <li key={index}>
-                                {element.charAt(0).toUpperCase() + element.slice(1)}
-                            </li>
-                        ))}
-                    </ul>
-                </div>*/}
                 <div>
                     <ul>
-                        { userEducation.map((education, index) =>(
+                        {userEducation.map((education, index) =>(
                             <li key={index}>
                                 <b>School Name: </b>{education.schoolName} <br />
                                 <b>Degree: </b> {education.degree} <br />
@@ -53,14 +41,30 @@ function PreviewCv({data, userEducation, userExperience, handleDelete}) {
                                 <b>Location: </b>{education.location} <br />
                                 edu index: {education.id}
                             </li>
-                        )) }
+                        ))}
                     </ul>
                 </div>
             </div>
-            <div>
-                <h2>Experience</h2>
+            <div className="workExperience">
+                <div className="workTitle">
+                    <h2>Work Experience</h2>
+                </div>
                 <div>
-                    
+                    {userExperience.map((experience, index) => (
+                    <div key={index} className="experiences">
+                        <h2>{experience.companyName}</h2>
+                        <div className="workDetails">
+                            <div className="workDates">
+                                <p>{experience.startingDate}</p>
+                                <p>{experience.endingDate}</p>
+                            </div>
+                            <div className="workPosition">
+                                <p>{experience.role}</p>
+                                <p>{experience.description}</p>
+                            </div>
+                        </div>
+                    </div>
+                    ))}
                 </div>
             </div>
         </div>
