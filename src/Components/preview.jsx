@@ -29,24 +29,23 @@ function PreviewCv({data, userEducation, userExperience}) {
                     </div>
                 </div>
             </div>
-            <div>
-                <h2>Education</h2>
+            <div className="personEducations">
+                <div className="title">
+                    <h2>Education</h2>
+                </div>
                 <div>
-                    <ul>
-                        {userEducation.map((education, index) =>(
-                            <li key={index}>
-                                <b>School Name: </b>{education.schoolName} <br />
-                                <b>Degree: </b> {education.degree} <br />
-                                <b>Year: </b> {education.year} <br />
-                                <b>Location: </b>{education.location} <br />
-                                edu index: {education.id}
-                            </li>
-                        ))}
-                    </ul>
+                    {userEducation.map((education, index) =>(
+                        <div key={index}>
+                            <b>School: </b>{education.schoolName} <br />
+                            <b>Degree: </b> {education.degree} <br />
+                            <b>Year: </b> {education.year} <br />
+                            <b>Location: </b>{education.location} <br />
+                        </div>
+                    ))}
                 </div>
             </div>
             <div className="workExperience">
-                <div className="workTitle">
+                <div className="title">
                     <h2>Work Experience</h2>
                 </div>
                 <div>

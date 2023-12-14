@@ -6,6 +6,7 @@ import data from './data'
 import uniqid from "uniqid"
 import './styles/app.css'
 import ExperienceSection from "./Experience/experiencComp";
+import { jsPDF } from "jspdf";
 
 function App() {
     const [personalInfo, setPersonalInfo] = useState({
@@ -137,6 +138,10 @@ function App() {
         });
     }
 
+    function download() {
+        
+    }
+
     return (
         <div className="App">
             <div className="userInputData">
@@ -169,6 +174,9 @@ function App() {
                     collapseForm={collapseForm}
                     removeForm={removeForm}
                     />
+                </div>
+                <div>
+                    <button onClick={() => download(personalInfo)}>Download</button>
                 </div>
             </div>
             <div>
