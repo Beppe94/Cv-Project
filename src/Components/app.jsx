@@ -12,11 +12,11 @@ function App() {
     const [personalInfo, setPersonalInfo] = useState({
         fileName: '',
         fileSrc: '',
-        name: '',
-        surname: '',
-        phoneNumber: '',
-        email: '',
-        description: ''
+        name: 'John',
+        surname: 'Snow',
+        phoneNumber: '1234567890',
+        email: 'jon.snow@gmail.com',
+        description: 'Hi! I am Jon Snow a skilled and passionate web developer with a knack for turning ideas into dynamic and user-friendly digital experiences. With a strong foundation in front-end and back-end technologies, i am adept at creating responsive and visually appealing websites. '
     });
     
     const [sectionOpen, setSectionOpen] = useState(null)
@@ -138,6 +138,25 @@ function App() {
         });
     }
 
+    function clear() {
+        setPersonalInfo({
+            fileName: '',
+            fileSrc: '',
+            name: '',
+            surname: '',
+            phoneNumber: '',
+            email: '',
+            description: ''
+        });
+
+        setSectionOpen(null);
+       
+        setSections({
+            educations: [],
+            experiences: []
+        })
+    }
+
     function download() {
         
     }
@@ -177,6 +196,7 @@ function App() {
                 </div>
                 <div>
                     <button onClick={() => download(personalInfo)}>Download</button>
+                    <button onClick={() => clear()}>Clear All</button>
                 </div>
             </div>
             <div>

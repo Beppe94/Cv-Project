@@ -1,4 +1,15 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPhone } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { faAddressCard } from "@fortawesome/free-solid-svg-icons";
+import { faMinus } from "@fortawesome/free-solid-svg-icons";
+
 function PreviewCv({data, userEducation, userExperience}) {
+
+    const phone = <FontAwesomeIcon icon={faPhone} />
+    const mail = <FontAwesomeIcon icon={faEnvelope} />
+    const user = <FontAwesomeIcon icon={faAddressCard} />
+    const dash = <FontAwesomeIcon icon={faMinus} />
 
     const defaultImg = './src/Assets/default.png'
 
@@ -15,17 +26,20 @@ function PreviewCv({data, userEducation, userExperience}) {
                     </div>
                 </div>
                 <div className="perviewPersonalData">
-                    <p><b>Phone:</b> {data.phoneNumber}</p>
-                    <p><b>Email:</b> {data.email}</p>
-                    <div>
-                        <p><b>About Me: </b> {data.description.split('\n').map((line,index) =>
+                    <h2 className="title">Contacts</h2>
+                    <div className="personInfo">
+                        <p><span className="icon">{phone} {dash} </span>{data.phoneNumber}</p>
+                        <p><span className="icon">{mail} {dash} </span> {data.email}</p>
+                        <div>
+                            <p><span className="icon">{user} {dash} </span> {data.description.split('\n').map((line,index) =>
                     
                         <span key={index}>
-                            {line}
-                            <br />  
-                        </span>
-                        )}
-                        </p>
+                                {line}
+                                <br />  
+                            </span>
+                            )}
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -35,11 +49,17 @@ function PreviewCv({data, userEducation, userExperience}) {
                 </div>
                 <div>
                     {userEducation.map((education, index) =>(
-                        <div key={index}>
-                            <b>School: </b>{education.schoolName} <br />
-                            <b>Degree: </b> {education.degree} <br />
-                            <b>Year: </b> {education.year} <br />
-                            <b>Location: </b>{education.location} <br />
+                        <div className="educations" key={index}>
+                            <h2>{education.schoolName}</h2>
+                            <div className="educationDetails">
+                                <div className="educationDate">
+                                    <p>{education.year}</p>
+                                </div>
+                                <div className="educationInfo">
+                                    <p>{education.degree}</p>
+                                    <p>{education.location}</p>
+                                </div>
+                            </div>
                         </div>
                     ))}
                 </div>
