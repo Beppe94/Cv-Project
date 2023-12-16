@@ -1,6 +1,5 @@
 function PersonalDataForm({
     data, 
-    uploadImage,
     handleName, 
     handleSurname,
     handlePhoneNumber,
@@ -29,18 +28,6 @@ function PersonalDataForm({
                 placeholder="Surname"
                 value={data.surname}
                 onChange={handleSurname}
-                />
-            </div>
-            <div className="personalImage">
-                <h2>Choose an Image</h2>
-                <label htmlFor="file" id="fileImage">
-                    {data.fileName ? '' : "Choose an image "}
-                </label>
-                <input 
-                type="file" 
-                id="file"
-                accept="image/*"
-                onChange={uploadImage}
                 />
             </div>
             <div>

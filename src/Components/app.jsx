@@ -10,8 +10,6 @@ import { jsPDF } from "jspdf";
 
 function App() {
     const [personalInfo, setPersonalInfo] = useState({
-        fileName: '',
-        fileSrc: '',
         name: 'John',
         surname: 'Snow',
         phoneNumber: '1234567890',
@@ -23,13 +21,6 @@ function App() {
     
     const [sections, setSections] = useState(data.sections)
     
-    const uploadImage = (e) => {
-        setPersonalInfo({...personalInfo,
-            fileName: e.target.files[0].name,
-            fileSrc: URL.createObjectURL(e.target.files[0])
-        })
-    }
-
     const personName = (e) => {
         setPersonalInfo({...personalInfo,
         name: e.target.value
@@ -140,8 +131,6 @@ function App() {
 
     function clear() {
         setPersonalInfo({
-            fileName: '',
-            fileSrc: '',
             name: '',
             surname: '',
             phoneNumber: '',
@@ -168,7 +157,6 @@ function App() {
                 data={personalInfo}
                 handleName={personName}
                 handleSurname={personSurname}
-                uploadImage={uploadImage}
                 handlePhoneNumber={handlePhoneNumber}
                 handleEmail={handleEmail}
                 handleDescription={handleDescription}

@@ -11,16 +11,10 @@ function PreviewCv({data, userEducation, userExperience}) {
     const user = <FontAwesomeIcon icon={faAddressCard} />
     const dash = <FontAwesomeIcon icon={faMinus} />
 
-    const defaultImg = './src/Assets/default.png'
-
     return (
         <div className="resumePreview">
             <div className="personalInfoPreview">
                 <div className="person">
-                    <img 
-                    src={data.fileSrc || defaultImg} 
-                    alt={data.fileName} 
-                    />
                     <div className="previewPersonName">
                         <h1>{data.name} {data.surname}</h1>
                     </div>

@@ -158,12 +158,6 @@ img {
   padding: 10px;
 }
 
-.person img {
-  padding: 10px;
-  max-width: 140px;
-  max-height: 140px;
-}
-
 .perviewPersonalData {
   display: flex;
   flex-direction: column;
