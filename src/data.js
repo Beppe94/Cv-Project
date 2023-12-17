@@ -4,9 +4,9 @@ const data = {
     sections: {
         educations: [
           {
-            schoolName: "X Mansion",
-            degree: "Bachelor of Science",
-            location: "New York City, US",
+            schoolName: "Hardvard University",
+            degree: "Bachelor in Computer Science",
+            location: "Massachusetts, US",
             year: "08/2020",
             isClosed: true,
             id: uniqid(),

@@ -1,12 +1,14 @@
-import {useState} from "react";
+import {useState, useRef} from "react";
 import PreviewCv from "./preview";
 import PersonalDataForm from "./personalForm";
 import EducationSection from "./Education/educationComp";
-import data from './data'
+import data from '../data'
 import uniqid from "uniqid"
 import './styles/app.css'
 import ExperienceSection from "./Experience/experiencComp";
 import { jsPDF } from "jspdf";
+import html2canvas from "html2canvas";
+import phone from '../Assets/phone-solid.png'
 
 function App() {
     const [personalInfo, setPersonalInfo] = useState({
@@ -147,12 +149,18 @@ function App() {
     }
 
     function download() {
+
+        const pdf = new jsPDF
         
     }
 
     return (
         <div className="App">
             <div className="userInputData">
+                <div className="utilities">
+                    <button onClick={download}>Download</button>
+                    <button onClick={() => clear()}>Clear All</button>
+                </div>
                 <PersonalDataForm 
                 data={personalInfo}
                 handleName={personName}
@@ -182,10 +190,6 @@ function App() {
                     removeForm={removeForm}
                     />
                 </div>
-                <div>
-                    <button onClick={() => download(personalInfo)}>Download</button>
-                    <button onClick={() => clear()}>Clear All</button>
-                </div>
             </div>
             <div>
                 <PreviewCv 
@@ -198,4 +202,4 @@ function App() {
     )
 }
 
-export default App
+export default App;

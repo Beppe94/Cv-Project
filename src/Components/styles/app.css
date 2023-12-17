@@ -55,6 +55,27 @@ img {
   border-radius: 10%;
 }
 
+.utilities {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 25px;
+  gap: 20px;
+}
+
+.utilities button {
+  height: 40px;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  font-size: 18px;
+  background-color: #ffffff;
+  box-shadow: 0 0 10px 5px gray;
+}
+
+.utilities button:focus {
+  border: 2px solid rgb(0, 102, 255);
+}
+
 .App {
   width: 100%;
   display: flex;
