@@ -70,6 +70,17 @@ img {
   font-size: 18px;
   background-color: #ffffff;
   box-shadow: 0 0 10px 5px gray;
+  padding: 10px;
+}
+
+.clearAndLoad {
+  display: flex;
+  justify-content: space-between;
+}
+
+.clearAndLoad button {
+  padding: 10px;
+  width: 160px;
 }
 
 .utilities button:focus {

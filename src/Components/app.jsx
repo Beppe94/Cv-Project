@@ -7,17 +7,10 @@ import uniqid from "uniqid"
 import './styles/app.css'
 import ExperienceSection from "./Experience/experiencComp";
 import { jsPDF } from "jspdf";
-import html2canvas from "html2canvas";
 import phone from '../Assets/phone-solid.png'
 
 function App() {
-    const [personalInfo, setPersonalInfo] = useState({
-        name: 'John',
-        surname: 'Snow',
-        phoneNumber: '1234567890',
-        email: 'jon.snow@gmail.com',
-        description: 'Hi! I am Jon Snow a skilled and passionate web developer with a knack for turning ideas into dynamic and user-friendly digital experiences. With a strong foundation in front-end and back-end technologies, i am adept at creating responsive and visually appealing websites. '
-    });
+    const [personalInfo, setPersonalInfo] = useState(data.sections.personalInfo);
     
     const [sectionOpen, setSectionOpen] = useState(null)
     
@@ -148,6 +141,12 @@ function App() {
         })
     }
 
+    function loadExample() {
+        setPersonalInfo(data.sections.personalInfo);
+
+        setSections(data.sections)
+    }
+
     function download() {
 
         const pdf = new jsPDF
@@ -158,8 +157,11 @@ function App() {
         <div className="App">
             <div className="userInputData">
                 <div className="utilities">
+                    <div className="clearAndLoad">
+                        <button onClick={clear}>Clear All</button>
+                        <button onClick={loadExample}>Load Example</button>
+                    </div>
                     <button onClick={download}>Download</button>
-                    <button onClick={() => clear()}>Clear All</button>
                 </div>
                 <PersonalDataForm 
                 data={personalInfo}
