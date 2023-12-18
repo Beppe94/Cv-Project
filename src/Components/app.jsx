@@ -147,6 +147,7 @@ function App() {
 
     const handlePrint = useReactToPrint({
         content: () => printRef.current,
+        documentTitle: `${personalInfo.name} - ${personalInfo.surname}-Resume`,
     });
 
     return (
