@@ -6,16 +6,14 @@ import data from '../data'
 import uniqid from "uniqid"
 import './styles/app.css'
 import ExperienceSection from "./Experience/experiencComp";
-import { jsPDF } from "jspdf";
-import phone from '../Assets/phone-solid.png'
+import { useReactToPrint } from "react-to-print";
 
 function App() {
     const [personalInfo, setPersonalInfo] = useState(data.sections.personalInfo);
-    
-    const [sectionOpen, setSectionOpen] = useState(null)
-    
-    const [sections, setSections] = useState(data.sections)
-    
+    const [sectionOpen, setSectionOpen] = useState(null);
+    const [sections, setSections] = useState(data.sections);
+    const printRef = useRef();
+
     const personName = (e) => {
         setPersonalInfo({...personalInfo,
         name: e.target.value
@@ -147,11 +145,9 @@ function App() {
         setSections(data.sections)
     }
 
-    function download() {
-
-        const pdf = new jsPDF
-        
-    }
+    const handlePrint = useReactToPrint({
+        content: () => printRef.current,
+    });
 
     return (
         <div className="App">
@@ -161,7 +157,7 @@ function App() {
                         <button onClick={clear}>Clear All</button>
                         <button onClick={loadExample}>Load Example</button>
                     </div>
-                    <button onClick={download}>Download</button>
+                    <button onClick={handlePrint}>Download</button>
                 </div>
                 <PersonalDataForm 
                 data={personalInfo}
@@ -193,7 +189,7 @@ function App() {
                     />
                 </div>
             </div>
-            <div>
+            <div ref={printRef}>
                 <PreviewCv 
                 data={personalInfo}
                 userEducation={sections.educations}
