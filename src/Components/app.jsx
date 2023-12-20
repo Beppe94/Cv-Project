@@ -151,7 +151,7 @@ function App() {
     });
 
     return (
-        <div className="App">
+        <div className="app">
             <div className="userInputData">
                 <div className="utilities">
                     <div className="clearAndLoad">
