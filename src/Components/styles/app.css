@@ -86,7 +86,6 @@ img {
 .app {
   display: flex;
   justify-content: center;
-  background-color: #535bf2;
 }
 
 .userInputData {
@@ -134,12 +133,6 @@ img {
 ::-webkit-file-upload-button {
   background: none;
   border: none;
-}
-
-@media (prefers-color-scheme: light) {
-  a:hover {
-    color: #747bff;
-  }
 }
 
 .closedForm {
