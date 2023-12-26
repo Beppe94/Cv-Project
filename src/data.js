@@ -11,7 +11,7 @@ const data = {
       },
       educations: [
         {
-          schoolName: "Hardvard University",
+          schoolName: "Harvard University",
           degree: "Bachelor in Computer Science",
           location: "Massachusetts, US",
           year: "08/2020",
