@@ -7,7 +7,7 @@ const data = {
         surname: 'Gray',
         phoneNumber: '1234567890',
         email: 'Walter.gray@gmail.com',
-        description: 'Hi! I am Jon Snow a skilled and passionate web developer with a knack for turning ideas into dynamic and user-friendly digital experiences. With a strong foundation in front-end and back-end technologies, i am adept at creating responsive and visually appealing websites. '
+        description: 'Hi! I am Walter Gray a skilled and passionate web developer with a knack for turning ideas into dynamic and user-friendly digital experiences. With a strong foundation in front-end and back-end technologies, i am adept at creating responsive and visually appealing websites. '
       },
       educations: [
         {
